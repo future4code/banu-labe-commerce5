@@ -1,34 +1,34 @@
-import React from 'react';
-import './App.css';
+ import React from 'react';
+ import './App.css';
 
 
-let productList =[
+ let productList =[
   {name: "Camiseta Divertida", price:150, info:"Camiseta de algodão,P"},
   {name: "Camiseta Lunar", price:100, info:"Camiseta de algodão,M"},
-  {name: "Camiseta Satuno", price:160, info:"Camiseta de algodão,G"}
-]
+   {name: "Camiseta Satuno", price:160, info:"Camiseta de algodão,G"}
+ ]
 
-class Product extends React.Component{
-    constructor (props){
-        super (props);
-        this.state={
-            qty:0
+ class Product extends React.Component{
+     constructor (props){
+         super (props);
+         this.state={
+             qty:0
         };
         // Eventos
         this.add = this.add.bind(this);
         this.remove = this.remove.bind(this);
-        this.showInfo = this.showInfo.bind(this);
-    }
+         this.showInfo = this.showInfo.bind(this);
+     }
     add(){
-        this.setState({
-            qty:this.state.qty + 1
-        });
-    }
-    remove(){
-        this.setState({
+         this.setState({
+           qty:this.state.qty + 1
+         });
+     }
+     remove(){
+                  this.setState({
         qty:this.state.qty -1
     });
-    }
+     }
     showInfo(){
         alert (this.props.info);
     }
@@ -36,74 +36,99 @@ class Product extends React.Component{
         return(
              <div>
                  <div className="row form-group">
-                     <div className="col-sm-10">
+                      <div className="col-sm-10">
                          <h4>{this.props.name}: R$ {this.props.price}</h4>
-                     </div>
+                      </div>
                      <div className="col-sm-2 text-right">
-                         Quantidade: {this.state.qty}
-                     </div>
-                     <div className="row btn-toolbar">
-                         <div className="col-6">
-                             <button className="btn btn-outline-primary" onClick={this.showInfo}>Informações</button> 
+                          Quantidade: {this.state.qty}
+                                               </div>
+                      <div className="row btn-toolbar">
+                          <div className="col-6">
+                              <button className="btn btn-outline-primary" onClick={this.showInfo}>Informações</button> 
                            
-                         </div>
-                         <div className="col-6 text-rigth">
-                         <button className="btn btn-outline-primary" onClick={this.add}>+</button> 
-                         <button className="btn btn-outline-primary" onClick={this.remove} disabled={this.state.qty<1}>-</button> 
+                          </div>
+                          <div className="col-6 text-rigth">
+                          <button className="btn btn-outline-primary" onClick={this.add}>+</button> 
+                          <button className="btn btn-outline-primary" onClick={this.remove} disabled={this.state.qty<1}>-</button> 
 
                          </div>
-                     </div>
+                      </div>
 
-                 </div>
-                 <hr/>
-             </div>
+                  </div>
+                  <hr/>
+              </div>
 
-        );
-    }
+         );
+     }
 
-}
-class ProductList extends React.Component{
-    constructor (props){
-        super (props);
-        this.state={
-            productList:""
+ }
+ class ProductList extends React.Component{
+     constructor (props){
+         super (props);
+         this.state={
+             productList:""
          };
-    }
-    componentDidMount(){
-        setTimeout(()=>{
+     }
+     componentDidMount(){
+         setTimeout(()=>{
 
-            this.setState({productList : productList})
-        }, 1000);
-    }
-    render(){
-        if(!this.state.productList) return <p>Carregando....</p>
+             this.setState({productList : productList})
+         }, 1000);
+     }
+     render(){
+         if(!this.state.productList) return <p>Carregando....</p>
 
-        const Component = this;
-        const products = this.state.productList.map(
-            function(product){
-                return(
-                    <Product name={product.name}
-                    price ={product.price} info={product.info}/>
-            );
+         const Component = this;
+         const products = this.state.productList.map(
+             function(product){
+                 return(
+                     <Product name={product.name}
+                     price ={product.price} info={product.info}/>
+             );
             });
 
-            return(
-                <div>
-                     {products}
-                </div>
+             return(
+                 <div>
+                      {products}
+                 </div>
                
-            );
+             );
         
 
-    }
-}
-function App(){
-    return (
-        <div>
-            <ProductList/>
-        </div>
-    )
+     }
+ }
+ function App(){
+     return (
+       <div>
+             <ProductList/>
+         </div>
+     )}
+     
+ import React from "react";
+ import logo from "./logo.svg";
+ import "./App.css";
+ import Home from "./pages/Home";
+ import { createGlobalStyle } from "styled-components";
 
-}
+ const GlobalStyle = createGlobalStyle`
 
-export default App;
+   html,body{
+    background-color: #020067;
+    color: whitesmoke;
+   font-family: Poppins, sans-serif;
+   display: flex;
+    flex-direction: column;
+ }
+
+ ';
+
+ function App() {
+   return(
+   <React.Fragment>
+     <GlobalStyle />
+     <Home />
+   </React.Fragment>)
+ }
+
+ export default App;
+
