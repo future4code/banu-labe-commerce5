@@ -21,4 +21,4 @@ function recuperarCarrinho() {
   return carrinho;
 }
 
-export { adicionarCarrinho };
+export { adicionarCarrinho, recuperarCarrinho };

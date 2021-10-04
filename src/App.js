@@ -1,17 +1,18 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Home from "./pages/Home";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
-  html,body{
+  body{
+   width: 100vw;
    background-color: #020067;
    color: whitesmoke;
    font-family: Poppins, sans-serif;
    display: flex;
    flex-direction: column;
+   overflow-x: hidden;
 }
 
 `;
@@ -20,7 +21,7 @@ function App() {
   return(
   <React.Fragment>
     <GlobalStyle />
-    <Home />
+     <Home />
   </React.Fragment>)
 }
 

@@ -9,9 +9,12 @@ const Cartao = styled.div`
   height: 20rem;
   background-color: #72268a9e;
   border-radius: 10px;
+  margin: 20px;
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   > img {
     height: 60%;
     width: 100%;
@@ -30,7 +33,7 @@ const Cartao = styled.div`
       display: flex;
       justify-content: center;
       border-radius: 20px;
-      margin: 15px 20px 0 20px;
+      margin: 0px 20px 0 20px;
       img {
           height: 20px;
           width: 20px;
@@ -51,11 +54,14 @@ const Cartao = styled.div`
 export default function Card(props) {
   return (
     <Cartao>
-      <img src={img} alt="" />
+      <img src={props.img} alt="" />
       <div className="descricao">
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <p> {props.descricao}</p>
         
       </div >
+      <div className="preco">
+        <p>R$ {props.preco}</p>
+      </div>
       <div className="botoes" onClick={e => adicionarCarrinho(props.idProduto)}>
         <img src={cart} alt="adicionar ao carrinho" 
         />

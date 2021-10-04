@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import user from "../img/cil-user.svg";
-
+import cart from '../img/cil-cart.svg'
+import Cart from '../pages/Cart'
 const HeaderComponent = styled.div`
   position: sticky;
-  margin-left: 0;
-  margin-right: 0;
   top: 0;
   height: 90px;
   //background-color: #02006757;
@@ -20,11 +18,21 @@ const HeaderComponent = styled.div`
   justify-content: space-between;
   padding: 0 20% 0 20%;
   align-items: center;
-  box-shadow: 1px 1px 15px whitesmoke;
+
+  .user{
+    &:hover{
+      background-color: burlywood;
+      border-radius: 5px;
+      color: black;
+      transition: all 1s;
+      cursor: pointer;
+    }
+  }
 
   img {
     height: 30px;
     width: 30px;
+    margin-right: 15px;
   }
 `;
 
@@ -36,8 +44,8 @@ export default function Header() {
           <i>NerdStore</i>
         </h1>
       </div>
-      <div className="user">
-        <img src={user} alt="usuario" /> <span>Vinicius</span>
+      <div className="user" >
+        <img src={cart} alt="usuario" /> <span>Ir para carrinho</span>
       </div>
     </HeaderComponent>
   );
