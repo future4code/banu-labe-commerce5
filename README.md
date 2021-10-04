@@ -5,7 +5,10 @@
 
 <h2>
 
-[NerdStore - Surge](unusual-leaf.surge.sh)
+[NerdStore](http://unusual-leaf.surge.sh/)
+
+
+http://unusual-leaf.surge.sh/
 
 </h2>
 
