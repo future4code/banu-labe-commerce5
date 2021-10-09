@@ -1,10 +1,22 @@
 import React from "react";
 import Header from "../components/Header";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Carrossel from "../components/Carrossel";
 import Card from "../components/Card";
 
 import { estoque } from "../js/estoque";
+
+const entrance = keyframes`
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }`
 
 const Main = styled.div`
   width: 100%;
@@ -12,6 +24,9 @@ const Main = styled.div`
   grid-template-rows: 400px 1fr;
   justify-items: center;
   background-color: #020067;
+  animation-name: ${entrance};
+  animation-duration: 1s;
+
 
   .vitrina {
     display: flex;
@@ -35,17 +50,16 @@ const Main = styled.div`
     background-color: whitesmoke;
     border-radius: 10px;
 
-    input{
+    input {
       text-align: center;
       border-radius: 5px;
       border: 1px solid grey;
       margin: 0 5px 0 5px;
     }
 
-    select{
+    select {
       font-size: 14px;
       margin: 0 5px 0 5px;
-
     }
   }
 `;
@@ -68,11 +82,13 @@ export default class Home extends React.Component {
     MaxPrec: "",
     listar: "name",
     ordem: 1,
+    qnt: 0
   };
 
   render() {
     return (
       <React.Fragment>
+        <Header/>
         <Main>
           <Carrossel />
           <Loja>
@@ -159,14 +175,18 @@ export default class Home extends React.Component {
                   );
                 })
                 .sort((valorAtual, proximoValor) => {
-
                   switch (this.state.listar) {
                     case "name":
-                      return this.state.ordem * valorAtual.name.localeCompare(proximoValor.name)                  
+                      return (
+                        this.state.ordem *
+                        valorAtual.name.localeCompare(proximoValor.name)
+                      );
                     default:
-                      return this.state.ordem * (valorAtual.value - proximoValor.value)
+                      return (
+                        this.state.ordem *
+                        (valorAtual.value - proximoValor.value)
+                      );
                   }
-
                 })
                 .map((value) => {
                   return (

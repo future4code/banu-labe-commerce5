@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom'
 import styled from "styled-components";
-import cart from '../img/cil-cart.svg'
-import logo from '../img/logo.png'
+import cart from "../img/cil-cart.svg";
+import logo from "../img/logo.png";
 import { Link } from "react-router-dom";
+import { recuperarCarrinho, limparCarrinho } from '../js/handleCompras'
+
 
 const HeaderComponent = styled.div`
   position: sticky;
@@ -20,33 +23,62 @@ const HeaderComponent = styled.div`
   justify-content: space-between;
   padding: 0 20% 0 20%;
   align-items: center;
-  
-  .logo{
+
+  .logo {
     display: flex;
     width: 30vw;
     justify-content: center;
     align-items: center;
-    img{
+
+    img {
       height: 70px;
       width: 70px;
-
     }
-    a{
+    a {
       text-decoration: none;
       color: whitesmoke;
     }
   }
 
-  .user{
-
+  .user {
     color: white;
-    text-decoration: none;
-    &:hover{
-      background-color: burlywood;
+    &:hover {
+      background-color: #8788de;
       border-radius: 5px;
       color: black;
-      transition: all 1s;
+      transition: all 0.5s;
       cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
+      color: whitesmoke;
+    }
+    span{
+      margin: 3px;
+    }
+
+    span.car{
+      padding-left: 5px;
+      background-color: #911010;
+      width: 25px;
+      border-radius: 5px;
+      display: inline-block;
+      margin: 0 auto;
+    }
+
+    div.limpar{
+      padding-left: 10px;
+      display: inline-block;
+
+      &:hover {
+      background-color: #911010;
+      transform: scale(1);
+      border-radius: 5px;
+      color: black;
+      transition: all 0.5s;
+      cursor: pointer;
+    }
     }
   }
 
@@ -58,22 +90,48 @@ const HeaderComponent = styled.div`
 `;
 
 export default function Header() {
+  const history = useHistory()
+  
+  const [carrinho, setCarrinho] = useState()
+  useEffect(() => {
+    setInterval( _ =>{
+      recuperarCarrinho() && setCarrinho(recuperarCarrinho().length)
+    }, 1000)
+  },[])
+
+
+
   return (
     <HeaderComponent>
-      <div className="logo" >
-          <img src={logo} alt="logomarca" />
-      <Link to='/'>
-        <h1>
-          <i>NerdStore</i>
-        </h1>
-      </Link>
+      <div className="logo">
+        <img src={logo} alt="logomarca" />
+        <Link to="/">
+          <h1>
+            <i>NerdStore</i>
+          </h1>
+        </Link>
       </div>
-
-      <Link to='cart'>
-      <div className="user" >
-        <img src={cart} alt="usuario" /> <span>Ir para carrinho</span>
-      </div>
-      </Link>
+      {window.location.pathname === '/' ? (
+        <div className="user">
+          <Link to="cart">
+            <img src={cart} alt="usuario" /> <span>Ir para carrinho</span>
+            <span className="car">{carrinho}</span>
+          </Link>
+        </div>
+      ) : (
+        <div className="user">
+          <Link to="/">
+            <span>Continuar Comprando</span>
+          </Link>
+          <div className='limpar'
+          onClick={_ =>{
+            window.confirm("Deseja remover todos os itens do carrinho?") && limparCarrinho();
+            history.push("/")
+          }
+          }
+          >Limpar Carrinho</div>
+        </div>
+      )}
     </HeaderComponent>
   );
 }

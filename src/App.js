@@ -24,7 +24,6 @@ function App() {
   return(
   <BrowserRouter>
     <GlobalStyle />
-    <Header />
     <Switch>
       <Route path="/" exact={true} component={Home} />
       <Route path="/cart" exact={true} component={Cart} />

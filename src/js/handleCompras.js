@@ -21,4 +21,8 @@ function recuperarCarrinho() {
   return carrinho;
 }
 
-export { adicionarCarrinho, recuperarCarrinho };
+function limparCarrinho(){
+  return localStorage.removeItem("checkout")
+}
+
+export { adicionarCarrinho, recuperarCarrinho, limparCarrinho };
