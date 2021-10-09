@@ -5,8 +5,8 @@ import cart from '../img/cil-cart.svg'
 import { adicionarCarrinho } from "../js/handleCompras";
 
 const Cartao = styled.div`
-  width: 18rem;
-  height: 20rem;
+  width: 15rem;
+  height: 25rem;
   background-color: #72268a9e;
   border-radius: 10px;
   margin: 20px;
@@ -15,8 +15,9 @@ const Cartao = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   > img {
-    height: 60%;
+    height: 100%;
     width: 100%;
     border-start-start-radius: 10px;
     border-start-end-radius: 10px;
@@ -24,7 +25,7 @@ const Cartao = styled.div`
   }
 
   .descricao{
-      margin-top: 15px;
+     margin-top: 15px;
      display: flex;
      text-align: center;
       
@@ -32,10 +33,11 @@ const Cartao = styled.div`
   .botoes{
       display: flex;
       justify-content: center;
-      border-radius: 20px;
+      align-items: center;
+      width: 100%;
       margin: 0px 20px 0 20px;
       img {
-          height: 20px;
+          height: 35px;
           width: 20px;
           margin-right: 10px;
       }
@@ -53,7 +55,7 @@ const Cartao = styled.div`
 
 export default function Card(props) {
   return (
-    <Cartao>
+    <Cartao >
       <img src={props.img} alt="" />
       <div className="descricao">
         <p> {props.descricao}</p>
@@ -62,7 +64,7 @@ export default function Card(props) {
       <div className="preco">
         <p>R$ {props.preco}</p>
       </div>
-      <div className="botoes" onClick={e => adicionarCarrinho(props.idProduto)}>
+      <div className="botoes" onClick={_ => adicionarCarrinho(props.idProduto)}>
         <img src={cart} alt="adicionar ao carrinho" 
         />
         <span>adicionar ao carrinho</span>

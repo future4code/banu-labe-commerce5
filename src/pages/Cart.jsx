@@ -101,7 +101,6 @@ class ProductList extends React.Component {
   render() {
     if (!this.state.productList) return <p>Carregando....</p>;
 
-    const Component = this;
     const products = this.state.productList.map(function (product) {
       return (
         <Product
@@ -117,9 +116,9 @@ class ProductList extends React.Component {
 }
 function Cart() {
   return (
-    <Carrinho>
+    <Carrinho >
       {" "}
-      <ProductList />
+      <ProductList  />
     </Carrinho>
   );
 }

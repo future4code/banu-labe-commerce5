@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import cart from '../img/cil-cart.svg'
-import Cart from '../pages/Cart'
+import logo from '../img/logo.png'
+import { Link } from "react-router-dom";
+
 const HeaderComponent = styled.div`
   position: sticky;
   top: 0;
@@ -18,8 +20,27 @@ const HeaderComponent = styled.div`
   justify-content: space-between;
   padding: 0 20% 0 20%;
   align-items: center;
+  
+  .logo{
+    display: flex;
+    width: 30vw;
+    justify-content: center;
+    align-items: center;
+    img{
+      height: 70px;
+      width: 70px;
+
+    }
+    a{
+      text-decoration: none;
+      color: whitesmoke;
+    }
+  }
 
   .user{
+
+    color: white;
+    text-decoration: none;
     &:hover{
       background-color: burlywood;
       border-radius: 5px;
@@ -39,14 +60,20 @@ const HeaderComponent = styled.div`
 export default function Header() {
   return (
     <HeaderComponent>
-      <div className="logo">
+      <div className="logo" >
+          <img src={logo} alt="logomarca" />
+      <Link to='/'>
         <h1>
           <i>NerdStore</i>
         </h1>
+      </Link>
       </div>
+
+      <Link to='cart'>
       <div className="user" >
         <img src={cart} alt="usuario" /> <span>Ir para carrinho</span>
       </div>
+      </Link>
     </HeaderComponent>
   );
 }
